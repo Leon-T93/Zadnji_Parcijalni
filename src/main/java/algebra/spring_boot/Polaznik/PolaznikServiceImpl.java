@@ -1,5 +1,6 @@
 package algebra.spring_boot.Polaznik;
 
+import algebra.spring_boot.Polaznik.dto.CreatePolaznikDto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,16 @@ public class PolaznikServiceImpl implements PolaznikService{
         return polaznikRepository.findById(id);
     }
 
+
     @Override
-    public List<Polaznik> fetchAll() {
-        return polaznikRepository.fetchAll();
+    public List<Polaznik> findAll() {
+        return polaznikRepository.findAll();
+    }
+
+    @Override
+    public Polaznik create(CreatePolaznikDto dto) {
+        Polaznik polaznik = new Polaznik(dto.getIme(),dto.getPrezime());
+
+        return polaznikRepository.save(polaznik);
     }
 }

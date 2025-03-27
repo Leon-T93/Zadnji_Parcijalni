@@ -1,5 +1,8 @@
 package algebra.spring_boot.Upis;
 
+import algebra.spring_boot.Polaznik.Polaznik;
+import algebra.spring_boot.ProgramObrazovanja.ProgramObrazovanja;
+import algebra.spring_boot.Upis.dto.CreateUpisDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,15 @@ public class UpisServiceImpl implements UpisService{
     }
 
     @Override
-    public List<Upis> fetchAll() {
-        return upisRespository.fetchAll();
+    public List<Upis> findAll() {
+        return upisRespository.findAll();
+    }
+
+    @Override
+    public Upis create(CreateUpisDto dto) {
+        Polaznik polaznik = new Polaznik(dto.getPOLAZNIK_ID());
+        ProgramObrazovanja programObrazovanja = new ProgramObrazovanja(dto.getPROGRAM_OBRAZOVANJA_ID());
+        Upis upis = new Upis(polaznik,programObrazovanja);
+        return upisRespository.save(upis);
     }
 }

@@ -37,4 +37,13 @@ public class Polaznik {
         this.ime = ime;
         this.prezime = prezime;
     }
+
+    public Polaznik(String ime, String prezime) {
+        this.ime = ime;
+        this.prezime = prezime;
+    }
+
+    public Polaznik(Integer id) {
+        this.id = id;
+    }
 }

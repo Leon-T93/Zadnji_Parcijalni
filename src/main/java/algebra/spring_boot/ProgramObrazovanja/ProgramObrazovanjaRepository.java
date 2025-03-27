@@ -12,5 +12,5 @@ public interface ProgramObrazovanjaRepository extends JpaRepository<ProgramObraz
 
     Optional<ProgramObrazovanja> findById (Integer id);
 
-    List<ProgramObrazovanja> fetchAll ();
+    List<ProgramObrazovanja> findAll ();
 }

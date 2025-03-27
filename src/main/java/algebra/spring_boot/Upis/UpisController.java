@@ -1,12 +1,13 @@
 package algebra.spring_boot.Upis;
 
 import algebra.spring_boot.Polaznik.Polaznik;
+import algebra.spring_boot.ProgramObrazovanja.ProgramObrazovanja;
+import algebra.spring_boot.ProgramObrazovanja.dto.CreateProgramObrazovanjaDto;
+import algebra.spring_boot.Upis.dto.CreateUpisDto;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +21,9 @@ public class UpisController {
 
 
     @GetMapping
-    public ResponseEntity<List<Upis>> fetchAll() {
+    public ResponseEntity<List<Upis>> findAll() {
 
-        List<Upis> upisi = upisService.fetchAll();
+        List<Upis> upisi = upisService.findAll();
 
         return ResponseEntity.status(200).body(upisi);
     }
@@ -37,5 +38,11 @@ public class UpisController {
         }
 
         return ResponseEntity.status(200).body(upis.get());
+    }
+
+    @PostMapping()
+    public ResponseEntity<Upis> create (@Valid @RequestBody CreateUpisDto dto) {
+        Upis upis = upisService.create(dto);
+        return ResponseEntity.status(201).body(upis);
     }
 }

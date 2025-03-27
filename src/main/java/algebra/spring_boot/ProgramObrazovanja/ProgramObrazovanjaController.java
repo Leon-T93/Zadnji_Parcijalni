@@ -1,12 +1,12 @@
 package algebra.spring_boot.ProgramObrazovanja;
 
 import algebra.spring_boot.Polaznik.Polaznik;
+import algebra.spring_boot.Polaznik.dto.CreatePolaznikDto;
+import algebra.spring_boot.ProgramObrazovanja.dto.CreateProgramObrazovanjaDto;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +21,9 @@ public class ProgramObrazovanjaController {
 
 
     @GetMapping
-    public ResponseEntity<List<ProgramObrazovanja>> fetchAll() {
+    public ResponseEntity<List<ProgramObrazovanja>> findAll() {
 
-        List<ProgramObrazovanja> programiObrazovanja = programObrazovanjaService.fetchAll();
+        List<ProgramObrazovanja> programiObrazovanja = programObrazovanjaService.findAll();
 
         return ResponseEntity.status(200).body(programiObrazovanja);
     }
@@ -38,5 +38,11 @@ public class ProgramObrazovanjaController {
         }
 
         return ResponseEntity.status(200).body(programObrazovanja.get());
+    }
+
+    @PostMapping()
+    public ResponseEntity<ProgramObrazovanja> create (@Valid @RequestBody CreateProgramObrazovanjaDto dto) {
+        ProgramObrazovanja programObrazovanja = programObrazovanjaService.create(dto);
+        return ResponseEntity.status(201).body(programObrazovanja);
     }
 }

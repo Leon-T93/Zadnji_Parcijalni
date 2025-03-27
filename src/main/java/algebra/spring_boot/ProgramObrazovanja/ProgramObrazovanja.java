@@ -36,4 +36,13 @@ public class ProgramObrazovanja {
         this.naziv = naziv;
         this.csvet = csvet;
     }
+
+    public ProgramObrazovanja(String naziv, Integer csvet) {
+        this.naziv = naziv;
+        this.csvet = csvet;
+    }
+
+    public ProgramObrazovanja(Integer id) {
+        this.id = id;
+    }
 }

@@ -33,4 +33,9 @@ public class Upis {
     public Upis(Polaznik polaznik) {
         this.polaznik = polaznik;
     }
+
+    public Upis(Polaznik polaznik, ProgramObrazovanja programObrazovanja) {
+        this.polaznik = polaznik;
+        this.programObrazovanja = programObrazovanja;
+    }
 }

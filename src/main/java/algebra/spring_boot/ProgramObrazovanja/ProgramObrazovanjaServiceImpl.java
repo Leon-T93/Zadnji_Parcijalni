@@ -1,5 +1,6 @@
 package algebra.spring_boot.ProgramObrazovanja;
 
+import algebra.spring_boot.ProgramObrazovanja.dto.CreateProgramObrazovanjaDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,13 @@ public class ProgramObrazovanjaServiceImpl implements ProgramObrazovanjaService{
     }
 
     @Override
-    public List<ProgramObrazovanja> fetchAll() {
-        return programObrazovanjaRepository.fetchAll();
+    public List<ProgramObrazovanja> findAll() {
+        return programObrazovanjaRepository.findAll();
+    }
+
+    @Override
+    public ProgramObrazovanja create(CreateProgramObrazovanjaDto dto) {
+        ProgramObrazovanja programObrazovanja = new ProgramObrazovanja(dto.getNaziv(),dto.getCsvet());
+        return programObrazovanjaRepository.save(programObrazovanja);
     }
 }

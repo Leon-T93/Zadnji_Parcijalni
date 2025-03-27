@@ -12,5 +12,5 @@ public interface PolaznikRepository extends JpaRepository<Polaznik, Integer> {
 
     Optional<Polaznik> findById (Integer id);
 
-    List<Polaznik> fetchAll ();
+    List<Polaznik> findAll ();
 }

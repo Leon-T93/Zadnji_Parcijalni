@@ -1,11 +1,10 @@
 package algebra.spring_boot.Polaznik;
 
+import algebra.spring_boot.Polaznik.dto.CreatePolaznikDto;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +21,9 @@ public class PolaznikController {
 
 
     @GetMapping
-    public ResponseEntity<List<Polaznik>> fetchAll() {
+    public ResponseEntity<List<Polaznik>> findAll() {
 
-        List<Polaznik> polaznici = polaznikService.fetchAll();
+        List<Polaznik> polaznici = polaznikService.findAll();
 
         return ResponseEntity.status(200).body(polaznici);
     }
@@ -39,5 +38,12 @@ public class PolaznikController {
         }
 
         return ResponseEntity.status(200).body(polaznik.get());
+    }
+
+
+    @PostMapping()
+    public ResponseEntity<Polaznik> create (@Valid @RequestBody CreatePolaznikDto dto) {
+        Polaznik polaznik = polaznikService.create(dto);
+        return ResponseEntity.status(201).body(polaznik);
     }
 }

@@ -12,5 +12,5 @@ public interface UpisRespository extends JpaRepository<Upis, Integer> {
 
     Optional<Upis> findById (Integer id);
 
-    List<Upis> fetchAll ();
+    List<Upis> findAll ();
 }
